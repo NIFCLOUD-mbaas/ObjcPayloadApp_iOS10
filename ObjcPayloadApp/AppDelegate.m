@@ -10,7 +10,12 @@
 #import <NCMB/NCMB.h>
 #import <UserNotifications/UserNotifications.h>
 
+#import "ViewController.h"
+#import "PayloadManager.h"
+
 @interface AppDelegate ()
+// PayloadManager
+@property (nonatomic)PayloadManager *payloadManager;
 
 @end
 
@@ -57,7 +62,16 @@
         //DeviceTokenを要求
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
-
+    
+    self.payloadManager = [PayloadManager sharedInstance];
+    
+    NSDictionary *remoteNotification = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
+    if (remoteNotification) {
+        NSLog(@"【ペイロード】アプリ非起動時に取得");
+        // プッシュ通知情報の取得
+        self.payloadManager.payloadDic = remoteNotification;
+    }
+    
     return YES;
 }
 
@@ -81,6 +95,14 @@
             NSLog(@"デバイストークン取得に成功しました");
         }
     }];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"【ペイロード】アプリ起動時に取得");
+    self.payloadManager.payloadDic = userInfo;
+    // 登録後ViewControllerのtableViewを更新する
+    ViewController *viewController = (ViewController *)self.window.rootViewController;
+    [viewController.payloadTableView reloadData];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
