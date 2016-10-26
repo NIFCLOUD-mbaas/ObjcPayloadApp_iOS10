@@ -1,5 +1,5 @@
-# 【iOS10 Swift】プッシュ通知からデータを取得してみよう！（ペイロード）
-*2016/10/07作成*
+# 【iOS10 Objective-C】プッシュ通知からデータを取得してみよう！（ペイロード）
+*2016/10/26作成*
 
 ![画像1](/readme-img/001.png)
 
@@ -17,9 +17,9 @@
 ![画像2](/readme-img/002.png)
 
 ## 動作環境
-* macOS Sierra 10.12
-* Xcode ver. 8.0
-* iPhone6 ver. 10.0.1
+* Mac OS X 10.11.6(El Capitan)
+* iPhone5 iOS 9.3.5
+* iPhone6s iOS 10.0.1
  * このサンプルアプリは、プッシュ通知を受信する必要があるため実機ビルドが必要です
 
 ※上記内容で動作確認をしています
@@ -56,26 +56,26 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 ![画像5](/readme-img/005.png)
 
-### 2. [GitHub](https://github.com/natsumo/SwiftPushApp.git)からサンプルプロジェクトのダウンロード
+### 2. [GitHub](https://github.com/NIFTYCloud-mbaas/ObjcPayloadApp_iOS10)からサンプルプロジェクトのダウンロード
 
 * 下記リンクをクリックしてプロジェクトをダウンロードをMacにダウンロードします
 
- * __[SwiftPayloadApp](https://github.com/natsumo/SwiftPayloadApp_iOS10/archive/master.zip)__
+ * __[SwiftPayloadApp](https://github.com/NIFTYCloud-mbaas/ObjcPayloadApp_iOS10/archive/master.zip)__
 
 ### 3. Xcodeでアプリを起動
 
-* ダウンロードしたフォルダを開き、「__SwiftPayloadApp.xcworkspace__」をダブルクリックしてXcode開きます(白い方です)
+* ダウンロードしたフォルダを開き、「__ObjcPayloadApp.xcworkspace__」をダブルクリックしてXcode開きます(白い方です)
 
 ![画像09](/readme-img/009.png)
 ![画像06](/readme-img/006.png)
 
-* 「SwiftPayloadApp.xcodeproj」（青い方）ではないので注意してください！
+* 「ObjcPayloadApp.xcodeproj」（青い方）ではないので注意してください！
 
 ![画像08](/readme-img/008.png)
 
 ### 4. APIキーの設定
 
-* `AppDelegate.swift`を編集します
+* `AppDelegate.m`を編集します
 * 先程[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます
 
 ![画像07](/readme-img/007.png)
@@ -178,80 +178,93 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 ### サンプルプロジェクトに実装済みの内容
 #### SDKのインポートと初期設定
-* ニフティクラウドmobile backend の[ドキュメント（クイックスタート）](http://mb.cloud.nifty.com/doc/current/introduction/quickstart_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
- * [SwiftでmBaaSを始めよう！(＜CocoaPods＞でuse_framewoks!を有効にした方法)](http://qiita.com/natsumo/items/57d3a4d9be16b0490965)
+* ニフティクラウドmobile backend の[ドキュメント（クイックスタート）](http://mb.cloud.nifty.com/doc/current/introduction/quickstart_ios.html)を、ご活用ください
 
 #### コード紹介
 ##### デバイストークン取得とニフティクラウドmobile backendへの保存
- * `AppDelegate.swift`の`didFinishLaunchingWithOptions`メソッドにAPNsに対してデバイストークンの要求するコードを記述し、デバイストークンが取得された後に呼び出される`didRegisterForRemoteNotificationsWithDeviceToken`メソッドを追記をします
+ * `AppDelegate.m`の`didFinishLaunchingWithOptions`メソッドにAPNsに対してデバイストークンの要求するコードを記述し、デバイストークンが取得された後に呼び出される`didRegisterForRemoteNotificationsWithDeviceToken`メソッドを追記をします
  * デバイストークンの要求はiOSのバージョンによってコードが異なります
 
-```swift
+```Objc
 //
-//  AppDelegate.swift
-//  SwiftPayloadApp
+//  AppDelegate.m
+//  ObjcPayloadApp
 //
 
-import UIKit
-import UserNotifications
-import NCMB
+#import "AppDelegate.h"
+#import <NCMB/NCMB.h>
+#import <UserNotifications/UserNotifications.h>
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+@interface AppDelegate ()
 
-    var window: UIWindow?
+@end
 
-    // APIキーの設定
-    let applicationkey = "YOUR_NCMB_APPLICATIONKEY"
-    let clientkey      = "YOUR_NCMB_CLIENTKEY"
+@implementation AppDelegate
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        // SDKの初期化
-        NCMB.setApplicationKey(applicationkey, clientKey: clientkey)
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-        // デバイストークンの要求
-        if #available(iOS 10.0, *){
-            /** iOS10以上 **/
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .badge, .sound]) {granted, error in
-                if error != nil {
-                    // エラー時の処理
-                    return
-                }
-                if granted {
-                    // デバイストークンの要求
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
-            }
-        } else {
-            /** iOS8以上iOS10未満 **/
-            //通知のタイプを設定したsettingを用意
-            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            //通知のタイプを設定
-            application.registerUserNotificationSettings(setting)
-            //DevoceTokenを要求
-            UIApplication.shared.registerForRemoteNotifications()
-        }
+    [NCMB setApplicationKey:@"YOUR_NCMB_APPLICATIONKEY"
+                  clientKey:@"YOUR_NCMB_CLIENTKEY"];
 
-        return true
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]){
+
+        //iOS10以上での、DeviceToken要求方法
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert |
+                                                 UNAuthorizationOptionBadge |
+                                                 UNAuthorizationOptionSound)
+                              completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                  if (error) {
+                                      return;
+                                  }
+                                  if (granted) {
+                                      //通知を許可にした場合DeviceTokenを要求
+                                      [[UIApplication sharedApplication] registerForRemoteNotifications];
+                                  }
+                              }];
+    } else if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){8, 0, 0}]){
+
+    //iOS10未満での、DeviceToken要求方法
+
+    //通知のタイプを設定したsettingを用意
+    UIUserNotificationType type = UIUserNotificationTypeAlert |
+    UIUserNotificationTypeBadge |
+    UIUserNotificationTypeSound;
+    UIUserNotificationSettings *setting;
+    setting = [UIUserNotificationSettings settingsForTypes:type
+                                                categories:nil];
+
+    //通知のタイプを設定
+    [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
+
+    //DeviceTokenを要求
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
 
-    // デバイストークンが取得されたら呼び出されるメソッド
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // 端末情報を扱うNCMBInstallationのインスタンスを作成
-        let installation : NCMBInstallation = NCMBInstallation.current()
-        // デバイストークンの設定
-        installation.setDeviceTokenFrom(deviceToken)
-        // 端末情報をデータストアに登録
-        installation.saveInBackground {error in
-            if error != nil {
-                // 端末情報の登録に失敗した時の処理                
-            } else {
-                // 端末情報の登録に成功した時の処理
-            }
-        }
+    return YES;
 }
+
+// デバイストークンが取得されたら呼び出されるメソッド
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
+    // 端末情報を扱うNCMBInstallationのインスタンスを作成
+    NCMBInstallation *installation = [NCMBInstallation currentInstallation];
+
+    // Device Tokenを設定
+    [installation setDeviceTokenFromData:deviceToken];
+
+    // 端末情報をデータストアに登録
+    [installation saveInBackgroundWithBlock:^(NSError *error) {
+        if(error){
+            // 端末情報の登録に失敗した時の処理
+
+        } else {
+            // 端末情報の登録に成功した時の処理
+
+        }
+    }];
+}
+
 ```
 
 ##### ペイロード取得
@@ -260,35 +273,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  * 【ペイロード：アプリ非起動時に受信】アプリが起動されたときにプッシュ通知の情報を取得する
  * 【ペイロード：アプリ起動時に受信】アプリが起動中にプッシュ通知の情報を取得する
 
-* それぞれ`AppDelegate.swift`の次の箇所に追記します
+* それぞれ`AppDelegate.m`の次の箇所に追記します
 
 _アプリ非起動時に受信する場合_
 * 次にアプリが起動されたときにペイロードを取得するため、`didFinishLaunchingWithOptions`メソッド内に記述します
 
-```swift
+```Objc
 // 【ペイロード：アプリ非起動時】アプリが起動されたときにプッシュ通知の情報を取得する
-        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
-
-            //プッシュ通知情報の取得
-            /* 省略 */    
+NSDictionary *remoteNotification = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
+    if (remoteNotification) {
+        // プッシュ通知情報の取得
+        /* 省略 */
 }
+
 ```
 
 _アプリ起動時に受信する場合_
 * 起動中に受信するため、`didReceiveRemoteNotification`メソッドを追記し、記述します
 
-```swift
+```Objc
 // 【ペイロード：アプリ起動時】アプリが起動中にプッシュ通知の情報を取得する
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
-        // プッシュ通知情報の取得
-        /* 省略 */
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // プッシュ通知情報の取得
+    /* 省略 */
 }
 ```
 
 ## 参考
-* ニフティクラウドmobile backend の[ドキュメント（プッシュ通知）](http://mb.cloud.nifty.com/doc/current/push/basic_usage_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
+* ニフティクラウドmobile backend の[ドキュメント（プッシュ通知）](http://mb.cloud.nifty.com/doc/current/push/basic_usage_ios.html)を、ご活用ください
  * [Swift3(iOS10)] [--準備中--](http://mb.cloud.nifty.com/)
  * [Swift2(iOS9,8)] [Swiftでプッシュ通知を送ろう！](http://qiita.com/natsumo/items/8ffafee05cb7eb69d815)
-* 同じ内容の【Objective-C】版もご用意しています
- * [ObjcPayloadApp_iOS10](--準備中--)
+* 同じ内容の【Swift】版もご用意しています
+ * [SwiftPayloadApp_iOS10](https://github.com/natsumo/SwiftPayloadApp_iOS10)

@@ -2,7 +2,7 @@
 //  PayloadManager.m
 //  ObjcPayloadApp
 //
-//  Created by oono on 2016/10/25.
+//  Created by Nifty on 2016/10/25.
 //  Copyright © 2016年 Nifty. All rights reserved.
 //
 
