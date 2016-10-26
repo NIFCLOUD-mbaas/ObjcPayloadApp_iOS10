@@ -15,7 +15,6 @@
 		9DBBA1231DBEE18100C11EDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBBA1211DBEE18100C11EDD /* LaunchScreen.storyboard */; };
 		9DBBA12B1DBEE9AA00C11EDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBBA12A1DBEE9AA00C11EDD /* Main.storyboard */; };
 		9DBBA12E1DBF24DD00C11EDD /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DBBA12D1DBF24DD00C11EDD /* TableViewCell.m */; };
-		9DBBA1321DBF301600C11EDD /* PayloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DBBA1311DBF301600C11EDD /* PayloadManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +34,6 @@
 		9DBBA12C1DBF24DD00C11EDD /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		9DBBA12D1DBF24DD00C11EDD /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		9DBBA12F1DBF274D00C11EDD /* ObjcPayloadApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ObjcPayloadApp.entitlements; sourceTree = "<group>"; };
-		9DBBA1301DBF301600C11EDD /* PayloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayloadManager.h; sourceTree = "<group>"; };
-		9DBBA1311DBF301600C11EDD /* PayloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayloadManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +84,6 @@
 				9DBBA11A1DBEE18100C11EDD /* ViewController.m */,
 				9DBBA12C1DBF24DD00C11EDD /* TableViewCell.h */,
 				9DBBA12D1DBF24DD00C11EDD /* TableViewCell.m */,
-				9DBBA1301DBF301600C11EDD /* PayloadManager.h */,
-				9DBBA1311DBF301600C11EDD /* PayloadManager.m */,
 				9DBBA12A1DBEE9AA00C11EDD /* Main.storyboard */,
 				9DBBA11F1DBEE18100C11EDD /* Assets.xcassets */,
 				9DBBA1211DBEE18100C11EDD /* LaunchScreen.storyboard */,
@@ -240,7 +235,6 @@
 				9DBBA11B1DBEE18100C11EDD /* ViewController.m in Sources */,
 				9DBBA12E1DBF24DD00C11EDD /* TableViewCell.m in Sources */,
 				9DBBA1181DBEE18100C11EDD /* AppDelegate.m in Sources */,
-				9DBBA1321DBF301600C11EDD /* PayloadManager.m in Sources */,
 				9DBBA1151DBEE18100C11EDD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

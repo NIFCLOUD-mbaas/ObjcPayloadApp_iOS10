@@ -11,11 +11,8 @@
 #import <UserNotifications/UserNotifications.h>
 
 #import "ViewController.h"
-#import "PayloadManager.h"
 
 @interface AppDelegate ()
-// PayloadManager
-@property (nonatomic)PayloadManager *payloadManager;
 
 @end
 
@@ -25,8 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [NCMB setApplicationKey:@"YOUR_NCMB_APPLICATIONKEY"
-                  clientKey:@"YOUR_NCMB_CLIENTKEY"];
+    [NCMB setApplicationKey:@"5c2a357266799270ad719da6d22579e49279304d105214dadd934bf0c6c97d2a"
+                  clientKey:@"4b2359e801049710cf7a185fa125021e6427479b0ea66ace342c283bf76fee36"];
     
     if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]){
         
@@ -63,13 +60,13 @@
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
     
-    self.payloadManager = [PayloadManager sharedInstance];
+    self.payloadDic = [[NSDictionary alloc]init];
     
     NSDictionary *remoteNotification = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     if (remoteNotification) {
         NSLog(@"【ペイロード】アプリ非起動時に取得");
         // プッシュ通知情報の取得
-        self.payloadManager.payloadDic = remoteNotification;
+        self.payloadDic = remoteNotification;
     }
     
     return YES;
@@ -99,7 +96,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"【ペイロード】アプリ起動時に取得");
-    self.payloadManager.payloadDic = userInfo;
+    self.payloadDic = userInfo;
     // 登録後ViewControllerのtableViewを更新する
     ViewController *viewController = (ViewController *)self.window.rootViewController;
     [viewController.payloadTableView reloadData];

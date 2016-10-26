@@ -11,7 +11,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+// ペイロードを管理するdictionary
+@property (nonatomic)NSDictionary *payloadDic;
 
 @end
 
