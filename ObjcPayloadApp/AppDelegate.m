@@ -22,8 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [NCMB setApplicationKey:@"5c2a357266799270ad719da6d22579e49279304d105214dadd934bf0c6c97d2a"
-                  clientKey:@"4b2359e801049710cf7a185fa125021e6427479b0ea66ace342c283bf76fee36"];
+    [NCMB setApplicationKey:@"YOUR_APPLICATION_KEY"
+                  clientKey:@"YOUR_CLIENT_KEY"];
     
     if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]){
         
