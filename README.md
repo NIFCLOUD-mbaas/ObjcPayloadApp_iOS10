@@ -35,7 +35,7 @@
 
 ## 作業の手順
 ### 0.プッシュ通知機能使うための準備
-__[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発用)](https://github.com/natsumo/iOS_Certificate)__
+__[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発用)](https://github.com/NIFTYCloud-mbaas/iOS_Certificate)__
 * 上記のドキュメントをご覧の上、必要な証明書類の作成をお願いします
  * 証明書の作成には[Apple Developer Program](https://developer.apple.com/account/)の登録（有料）が必要です
 
@@ -304,4 +304,4 @@ _アプリ起動時に受信する場合_
  * [Swift3(iOS10)] [--準備中--](http://mb.cloud.nifty.com/)
  * [Swift2(iOS9,8)] [Swiftでプッシュ通知を送ろう！](http://qiita.com/natsumo/items/8ffafee05cb7eb69d815)
 * 同じ内容の【Swift】版もご用意しています
- * [SwiftPayloadApp_iOS10](https://github.com/natsumo/SwiftPayloadApp_iOS10)
+ * [SwiftPayloadApp_iOS10](https://github.com/NIFTYCloud-mbaas/SwiftPayloadApp_iOS10)
