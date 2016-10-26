@@ -47,7 +47,7 @@
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="value" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="at8-bh-25F">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="value" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="at8-bh-25F">
                                                     <frame key="frameInset" minX="0.0%" minY="77.55%" width="100.00%" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -78,12 +78,20 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="98a-HL-7Bh" appends="YES" id="7UI-Kw-okN"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="payloadTableView" destination="HfD-6E-tD9" id="zrG-Lp-hQJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="98a-HL-7Bh">
+                    <connections>
+                        <action selector="tapScreen:" destination="BYZ-38-t0r" id="w8k-gx-Kfk"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="20.5" y="116.5"/>
         </scene>

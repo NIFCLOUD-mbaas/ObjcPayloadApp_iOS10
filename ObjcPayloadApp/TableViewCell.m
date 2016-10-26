@@ -11,7 +11,6 @@
 @interface TableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *payloadKey;
-@property (weak, nonatomic) IBOutlet UITextField *valueTextField;
 
 @end
 

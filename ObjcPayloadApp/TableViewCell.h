@@ -13,6 +13,8 @@
  */
 @interface TableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UITextField *valueTextField;
+
 /**
  セルにkeyとvalueをセットして表示します
  */

@@ -61,7 +61,7 @@
     }
     
     self.payloadDic = [[NSDictionary alloc]init];
-    
+
     NSDictionary *remoteNotification = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     if (remoteNotification) {
         NSLog(@"【ペイロード】アプリ非起動時に取得");
