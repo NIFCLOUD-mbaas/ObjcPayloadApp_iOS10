@@ -60,7 +60,7 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 * 下記リンクをクリックしてプロジェクトをダウンロードをMacにダウンロードします
 
- * __[SwiftPayloadApp](https://github.com/NIFTYCloud-mbaas/ObjcPayloadApp_iOS10/archive/master.zip)__
+ * __[ObjcPayloadApp](https://github.com/NIFTYCloud-mbaas/ObjcPayloadApp_iOS10/archive/master.zip)__
 
 ### 3. Xcodeでアプリを起動
 
