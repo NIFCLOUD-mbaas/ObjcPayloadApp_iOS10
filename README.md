@@ -301,7 +301,5 @@ _アプリ起動時に受信する場合_
 
 ## 参考
 * ニフティクラウドmobile backend の[ドキュメント（プッシュ通知）](http://mb.cloud.nifty.com/doc/current/push/basic_usage_ios.html)を、ご活用ください
- * [Swift3(iOS10)] [--準備中--](http://mb.cloud.nifty.com/)
- * [Swift2(iOS9,8)] [Swiftでプッシュ通知を送ろう！](http://qiita.com/natsumo/items/8ffafee05cb7eb69d815)
 * 同じ内容の【Swift】版もご用意しています
  * [SwiftPayloadApp_iOS10](https://github.com/NIFTYCloud-mbaas/SwiftPayloadApp_iOS10)
