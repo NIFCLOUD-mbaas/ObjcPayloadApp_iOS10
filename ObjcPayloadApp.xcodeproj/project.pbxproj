@@ -140,7 +140,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = Ncmb;
+				ORGANIZATIONNAME = "FUJITSU CLOUD TECHNOLOGIES LIMITED";
 				TargetAttributes = {
 					9DBBA10F1DBEE18100C11EDD = {
 						CreatedOnToolsVersion = 8.0;
